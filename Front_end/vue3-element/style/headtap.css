@@ -1,0 +1,111 @@
+/*------------------登录-注册----------------*/
+#backcont{
+    background-image: url(../static/back.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    min-height: 100vh;
+}
+
+.median-set{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-cont{
+    width: 500px;
+    height: 300px;
+    background: #3B9AE1;
+    opacity: 0.8;
+    border-radius: 5px;
+}
+
+.login-cont-title{
+    text-align: center;
+    color: #F0EABE;
+    font-size: 30px;
+    padding-top: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-cont-user{
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 30px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.login-cont-user p {
+    width: 50px;
+    color: #F0EABE;
+    font-size: 16px;
+}
+
+.inputflex{
+    flex: 1;
+}
+
+.reg-view{
+    width: 400px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.reg-view p {
+    cursor: pointer;
+    display: contents;
+    color: #F0EABE;
+}
+
+.login-cont-button{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 0 auto;
+    font-size: 16px;
+}
+
+/*-----侧边菜单栏-------*/
+.sidebar-top{
+    width: 100%;
+    background: #FFFFFF;
+    height: 50px;
+    color: #333333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+}
+.sidebar-top div:nth-child(1) {
+    padding-left: 22px;
+    font-size: 18px;
+}
+.sidebar-top div:nth-child(2) {
+    padding-right: 22px;
+    cursor: pointer;
+}
+
+.sidebar-cont {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    bottom: 50px;
+    background: #FFFFFF;
+    width: 200px;
+    height: 100vh;
+    color: #000000 !important;
+    font-size: 16px;
+    overflow-y: auto;
+}
