@@ -24,6 +24,7 @@
 
 <script>
 import {reactive, toRefs} from 'vue'
+import {useRouter} from 'vue-router'
 export default {
   setup(){
 

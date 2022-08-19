@@ -76,7 +76,7 @@
 /*-----侧边菜单栏-------*/
 .sidebar-top{
     width: 100%;
-    background: #FFFFFF;
+    background: #ffffff;
     height: 50px;
     color: #333333;
     display: flex;
@@ -90,6 +90,7 @@
 }
 .sidebar-top div:nth-child(1) {
     padding-left: 22px;
+    font-weight: bold;
     font-size: 18px;
 }
 .sidebar-top div:nth-child(2) {
@@ -110,6 +111,30 @@
     overflow-y: auto;
 }
 
+.sidebar-bottom{
+    width: 100%;
+    background: #FFFFFF;
+    height: 50px;
+    color: #333333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+}
+.sidebar-bottom div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 0 auto;
+    font-size: 16px;
+    /*font-weight: bold;*/
+    font-family: 等线;
+}
+
 /*--------主页定位----------*/
 .ordering {
     position: absolute;
@@ -122,7 +147,29 @@
 }
 
 .heading {
+    width: 100%;
+    background: #FFFFFF;
+    height: 50px;
+    color: #333333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 75px;
+    left: 200px;
+    right: 0;
+    z-index: 50;
+}
+.heading div:nth-child(1) {
+    padding-top: 10px;
+    padding-left: 150px;
     font-size: 22px;
     font-weight: bold;
-    padding: 10px;
 }
+
+.table {
+    padding-top: 150px;
+}
+
+/*---表格----*/
+.eee{height: calc(100vh - 390px);width: 100%;}

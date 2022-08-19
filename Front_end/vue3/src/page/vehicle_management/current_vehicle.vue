@@ -3,8 +3,8 @@
     <div class="heading">
       <div>当前车辆</div>
     </div>
-    <div>
-      <el-table :data="filterTableData" height="100%" style="width: 100%">
+    <div class="table">
+      <el-table :data="filterTableData" height=700px style="width: 100%">
         <el-table-column prop="in_time" label="入场时间" sortable min-width="100" />
         <el-table-column prop="license_plate" label="车牌号码" min-width="100" />
         <el-table-column prop="city" label="地级市" min-width="100" />
@@ -28,7 +28,10 @@
           </template>
         </el-table-column>
       </el-table>
+<!--      <el-pagination background layout="prev, pager, next" :total="1000" style="align-items: center;-->
+<!--    justify-content: center;padding-top: 50px"/>-->
     </div>
+
   </div>
 </template>
 
@@ -68,37 +71,166 @@ const handleDelete = (index: number, row: Car) => {
   console.log(index, row)
 }
 
-// 将字符串转换为时间
+
+
+//得到停车时长
+function getDuration(strDate1:string){
+  const date1 = Date.parse(strDate1);
+  const date2 = Date.parse(new Date().toString());
+  const hours = Math.floor((date2-date1)/(60*60*1000))
+  const minutes = Math.floor(((date2-date1)/(60*60*1000) - hours) * 60)
+  const seconds = Math.floor((((date2-date1)/(60*60*1000) - hours) * 60 - minutes) * 60)
+  return(hours + " 时 " + minutes + " 分 " + seconds + " 秒")
+}
 
 const tableData: Car[] = [
   {
-    in_time: '2022-01-01 00:00',
+    in_time: '2022-01-01 00:00:34',
     license_plate: '京A88888',
     city: '北京',
     vehicle_model: '蓝牌',
-    duration: '9999 h 59 min'
+    duration: getDuration('2022-01-01 00:00:34')
   },
   {
-    in_time: '2022-02-02 02:02',
+    in_time: '2022-02-02 02:02:45',
     license_plate: '津A666666',
     city: '天津',
     vehicle_model: '绿牌',
-    duration: '6666 h 46 min'
+    duration: getDuration('2022-02-02 02:02:45')
   },
   {
-    in_time: '2022-03-03 03:03',
+    in_time: '2022-03-03 03:03:45',
     license_plate: '皖H12345警',
     city: '安庆',
     vehicle_model: '白牌',
-    duration: '7777 h 37 min'
+    duration: getDuration('2022-03-03 03:03:45')
   },
   {
-    in_time: '2022-08-08 08:08',
+    in_time: '2022-08-08 08:08:34',
     license_plate: '冀A74397',
     city: '石家庄',
     vehicle_model: '黄牌',
-    duration: '0 h 35 min'
+    duration: getDuration('2022-08-08 08:08:34')
   },
+  {
+    in_time: '2022-01-01 00:00:34',
+    license_plate: '京A88888',
+    city: '北京',
+    vehicle_model: '蓝牌',
+    duration: getDuration('2022-01-01 00:00:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },{
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+    {
+    in_time: '2022-08-08 08:08:34',
+    license_plate: '冀A74397',
+    city: '石家庄',
+    vehicle_model: '黄牌',
+    duration: getDuration('2022-08-08 08:08:34')
+  },
+
 ]
 </script>
 
