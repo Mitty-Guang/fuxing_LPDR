@@ -32,10 +32,12 @@ const option = ref({
   },
   yAxis: {
     type: 'category',
-    data: ["1小时内", "3小时内", "1天内", "超过一天"]
+    inverse: true,
+    data: ['一小时内','三小时内','一天内','三天内','超过三天']
   },
   series: [
     {
+      realtimeSort: true,
       type: 'bar',
       stack: 'total',
       label: {
@@ -58,7 +60,7 @@ const option = ref({
           ])
         }
         },
-      data: [320, 302, 301, 334]
+      data: [320, 302, 301, 334, 888]
     }
   ]
 })

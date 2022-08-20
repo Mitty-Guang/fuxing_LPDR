@@ -115,12 +115,15 @@ export default {
 
         const menu = shallowRef(Array)
         // 菜单激活回调
-        const ac_index = ref('1-1')
+        const ac_index = ref('2-1')
         function Select(index,path){
             localStorage.setItem('menuid',JSON.stringify(index))
+            localStorage.setItem('menupath',JSON.stringify(path))
         }
         onMounted(()=>{
             ac_index.value = JSON.parse(localStorage.getItem('menuid'))
+
+            console.log(localStorage.getItem('menupath'))
         })
 
         return{menu,ac_index,Select}

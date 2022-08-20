@@ -137,6 +137,7 @@
 
 /*--------主页定位----------*/
 .ordering {
+    /*background-color: #e5e7e9;*/
     position: absolute;
     top: 50px;
     left: 200px;

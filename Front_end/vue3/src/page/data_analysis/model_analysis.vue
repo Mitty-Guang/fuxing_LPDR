@@ -32,10 +32,12 @@ const option = ref({
   },
   yAxis: {
     type: 'category',
+    inverse: true,
     data: ["蓝牌", "绿牌", "黄牌", "白牌"]
   },
   series: [
     {
+      realtimeSort: true,
       type: 'bar',
       stack: 'total',
       label: {
