@@ -124,7 +124,12 @@ export default {
     myCharts.on('click', function (param){
       const name=param.name;
       console.log(name);
-      window.open('http://localhost:8080/'+ provinces.get(name), 'name=_self');
+      const parent_routers = window.location.href.split('/')
+      let parent_router = parent_routers[0]
+      for(let i = 1; i<parent_routers.length-1; i++){
+        parent_router = parent_router + '/' + parent_routers[i]
+      }
+      window.open(parent_router + '/' + provinces.get(name), '_self');
       // const router = useRouter()
       // console.log(router)
       // router.push({path:'anhui'})

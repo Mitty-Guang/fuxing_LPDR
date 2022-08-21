@@ -14,7 +14,8 @@
         <!-- 登录和注册按钮的切换 -->
         <div class="reg-view" @click="regi = regi == '登录' ? '注册' : '登录'"><p>{{regi}}</p></div>
         <!--    登录或注册按钮提交    -->
-        <el-button v-if="regi == '注册'" type="success" class="login-cont-button">登录</el-button>
+
+        <el-button v-if="regi == '注册'" type="success" class="login-cont-button" @click="login">登录</el-button>
         <el-button v-else type="success" class="login-cont-button">注册</el-button>
 
       </div>
@@ -33,7 +34,12 @@ export default {
       password:'',
       regi:'注册'
     })
-    return{...toRefs(user)}
+
+    function login(){
+      window.open(window.location.href + 'index', '_self')
+    }
+
+    return{...toRefs(user), login}
   }
 }
 </script>

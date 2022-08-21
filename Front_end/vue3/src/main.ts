@@ -7,6 +7,7 @@ import ECharts from "vue-echarts";
 import 'echarts'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import axios from 'axios'
 
 // 全局引入csss
 import '../style/headtap.css'

@@ -1,11 +1,11 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory,createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const routes: Array<RouteRecordRaw> = [
     {//登录界面
         path:'/',
         name:'login',
-        component:()=>import(/*webpackChunkName:'Login'*/ '@/page/login/login.vue')
+        component:()=>import(/*webpackChunkName:'Login'*/ '@/page/login/login.vue'),
     },
     {//主界面
         path:'/index',
@@ -222,8 +222,9 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+  // history: createWebHistory(process.env.BASE_URL),
+    history: createWebHashHistory(),
+    routes
 })
 
 export default router
