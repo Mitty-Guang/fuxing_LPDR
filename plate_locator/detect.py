@@ -262,7 +262,7 @@ def parse_opt(image_path):
     augment: 推理的时候进行多尺度，翻转等操作（TTA）推理
     update: 如果为True，则对所有模型进行strip_optimizer操作，去除pt文件中优化器等信息，默认为False
     '''
-    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'best.pt', help='model path(s)')
+    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'model_train/best.pt', help='model path(s)')
     parser.add_argument('--source', type=str, default=image_path, help='file/dir/URL/glob, 0 for webcam')
     parser.add_argument('--data', type=str, default=ROOT / 'data/ccpd.yaml', help='(optional) dataset.yaml path')
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640], help='inference size h,w')

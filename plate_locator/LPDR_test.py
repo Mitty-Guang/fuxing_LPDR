@@ -1,9 +1,9 @@
-import plate_locator as pl
 import cv2 as cv
 import numpy as np
-import video_seperator as vs
 from collections import Counter
+from utils import video_seperator as vs, plate_locator as pl
 import detect as dt
+
 
 # 图片文件测试
 def picture_plate(plate_image):
@@ -32,15 +32,15 @@ def video_plate(images):
     return result_plate
 
 if __name__ == '__main__':
-    image = 'image4.jpg'
-    image_path = 'data/images/ccpd/' + image
-    plate_file_path = 'runs/detect/exp/crops/plate/' + image
-    opt = dt.parse_opt(image_path)
+    file = 'image2.jpg'
+    file_path = 'data/images/ccpd/' + file
+    plate_file_path = 'runs/detect/exp/crops/plate/' + file
+    opt = dt.parse_opt(file_path)
     dt.main(opt)
-
-    plate_image = cv.imread(plate_file_path)
-    picture_plate(plate_image)
-
-    # plate_video = cv.VideoCapture(plate_file_path)
-    # images = vs.get_video_seperated(plate_video)
-    # video_plate(images)
+    if 'jpg' or 'png' or 'jpeg' in file:
+        plate_image = cv.imread(plate_file_path)
+        picture_plate(plate_image)
+    elif 'mp4' in file:
+        plate_video = cv.VideoCapture(plate_file_path)
+        images = vs.get_video_seperated(plate_video)
+        video_plate(images)
