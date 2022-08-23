@@ -21,11 +21,11 @@ import yaml
 from PIL import Image
 from torch.cuda import amp
 
-from utils.datasets import exif_transpose, letterbox
-from utils.general import (LOGGER, check_requirements, check_suffix, check_version, colorstr, increment_path,
-                           make_divisible, non_max_suppression, scale_coords, xywh2xyxy, xyxy2xywh)
-from utils.plots import Annotator, colors, save_one_box
-from utils.torch_utils import copy_attr, time_sync
+from models.datasets import exif_transpose, letterbox
+from models.general import (LOGGER, check_requirements, check_suffix, check_version, colorstr, increment_path,
+                    make_divisible, non_max_suppression, scale_coords, xywh2xyxy, xyxy2xywh)
+from models.plots import Annotator, colors, save_one_box
+from models.torch_utils import copy_attr, time_sync
 
 
 def autopad(k, p=None):  # kernel, padding
@@ -465,7 +465,7 @@ class DetectMultiBackend(nn.Module):
     @staticmethod
     def model_type(p='path/to/model.pt'):
         # Return model type from model path, i.e. path='path/to/model.onnx' -> type=onnx
-        from model_train.export import export_formats
+        from models.export import export_formats
         suffixes = list(export_formats().Suffix) + ['.xml']  # export suffixes
         check_suffix(p, suffixes)  # checks
         p = Path(p).name  # eliminate trailing separators
