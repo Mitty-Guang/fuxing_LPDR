@@ -3,65 +3,6 @@
 import cv2 as cv
 import numpy as np
 
-# 0 预处理车牌（含有车牌）图片 hsv + sobel
-# 参数：车辆（含有车牌）图片，plate_image
-# 返回值：预处理后的车牌图片，preprocess_image
-def preprocess_plate_image_by_both(plate_image):
-    # hsv
-    # 1. 将一张 RGB 图片转换为 HSV 图片格式
-    hsv_image = cv.cvtColor(plate_image, cv.COLOR_BGR2HSV)
-    # 获取h、s、v图片分量，图片shape
-    h_split, s_split, v_split = cv.split(hsv_image)
-    rows, cols = h_split.shape
-    # 2. 遍历图片，找出蓝色区域
-    # 创建全黑背景，== 原始图片大小
-    binary_image = np.zeros((rows, cols), dtype=np.uint8)
-    # 设置感兴趣|提取的 颜色的 hsv 的区间：可调的经验值
-    HSV_MIN_BLUE_H = 100
-    HSV_MAX_BLUE_H = 140
-    HSV_MIN_BLUE_SV = 75
-    HSV_MAX_BLUE_SV = 255
-
-
-    # 遍历图片的每一个像素,找到满足条件（hsv找蓝色）的像素点，设置为255 ==binary_image中
-    for row in np.arange(rows):
-        for col in np.arange(cols):
-            H = h_split[row, col]
-            S = s_split[row, col]
-            V = v_split[row, col]
-            # 判断像素落在蓝色区域并满足 sv 条件
-            if (HSV_MIN_BLUE_H < H < HSV_MAX_BLUE_H) and (HSV_MIN_BLUE_SV < S < HSV_MAX_BLUE_SV) and (
-                    HSV_MIN_BLUE_SV < V < HSV_MAX_BLUE_SV):
-                binary_image[row, col] = 255
-
-    # sobel 算子
-    # 高斯模糊
-    blured_image = cv.GaussianBlur(plate_image, (5, 5), 0)
-    # 转成灰度图
-    gray_image = cv.cvtColor(blured_image, cv.COLOR_BGR2GRAY)
-    # 使用Sobel算子，求水平方向一阶导数
-    # 使用 cv.CV_16S
-    grad_x = cv.Sobel(gray_image, cv.CV_16S, 1, 0, ksize=3)
-    grad_y = cv.Sobel(gray_image, cv.CV_16S, 0, 1, ksize=3)
-    # 转成 CV-_8U - 借助 cv.convertScaleAbs()方法
-    abs_grad_x = cv.convertScaleAbs(grad_x)
-    abs_grad_y = cv.convertScaleAbs(grad_y)
-    # 叠加水平和垂直方向，获取 sobel 的输出
-    gray_image = cv.addWeighted(abs_grad_x, 1, abs_grad_y, 0, 0)
-    new_blured_image = cv.GaussianBlur(gray_image, (5, 5), 0)
-    # 二值化操作
-    is_success, threshold_image = cv.threshold(new_blured_image, 0, 255, cv.THRESH_OTSU)
-
-    # 执行闭操作=>车牌连成矩形区域
-    final_image = np.zeros((rows, cols), dtype=np.uint8)
-    for row in np.arange(rows):
-        for col in np.arange(cols):
-            if threshold_image[row, col] == 255 and binary_image[row, col] == 255:
-                final_image[row, col] = 255
-    kernel = cv.getStructuringElement(cv.MORPH_RECT, (10, 3))
-    morphology_image = cv.morphologyEx(final_image, cv.MORPH_CLOSE, kernel)
-    return morphology_image
-
 def preprocess_plate_image(plate_image):
     # hsv
     # 1. 将一张 RGB 图片转换为 HSV 图片格式
@@ -75,7 +16,7 @@ def preprocess_plate_image(plate_image):
     # 设置感兴趣|提取的 颜色的 hsv 的区间：可调的经验值
     HSV_MIN_BLUE_H = 100
     HSV_MAX_BLUE_H = 140
-    HSV_MIN_BLUE_SV = 90
+    HSV_MIN_BLUE_SV = 75
     HSV_MAX_BLUE_SV = 255
 
     # 遍历图片的每一个像素,找到满足条件（hsv找蓝色）的像素点，设置为255 ==binary_image中
@@ -100,7 +41,7 @@ def verify_plate_sizes(contour):
     # 声明常量：长宽比（最小、最大），面积（最小、最大） == 可以微调
     MIN_ASPECT_RATIO = 2.0
     MAX_ASPECT_RATIO = 4.5
-    MIN_AREA = 44 * 14 * 10
+    MIN_AREA = 44 * 14
     MAX_AREA = 44 * 14 * 100
 
     # 获取矩形特征描述的等值线区域，返回：中心点坐标、长和宽、旋转角度--float

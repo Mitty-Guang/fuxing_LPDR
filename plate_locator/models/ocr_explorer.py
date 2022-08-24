@@ -12,7 +12,6 @@ class Explorer:
         self.net = OcrNet(config.num_class)
         if os.path.exists(config.weight):
             self.net.load_state_dict(torch.load(config.weight, map_location='cpu'))
-            print('加载参数成功')
         else:
             raise RuntimeError('Model parameters are not loaded')
         self.net = self.net.to(self.device).eval()
@@ -47,24 +46,3 @@ class Explorer:
                 new += i
                 temp = i
         return new
-
-
-if __name__ == '__main__':
-    import os
-
-    e = Explorer()
-    co = 0
-    i = 0
-    from fake_chs_lp.random_plate import Draw
-
-    draw = Draw()
-    for i in range(1000):
-        plate, label = draw()
-        # image = cv2.cvtColor(plate,cv2.COLOR_RGB2GRAY)
-        c = e(plate)
-        print(i, c, label)
-        if c == label:
-            co += 1
-        cv2.imshow('a', plate)
-        cv2.waitKey(0)
-    print(co, i, co / i)

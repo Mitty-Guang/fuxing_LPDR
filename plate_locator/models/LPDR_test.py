@@ -9,7 +9,7 @@ from models.ocr_explorer import Explorer
 # 图片文件测试
 def picture_plate(image):
     plate_image = cv.imread(image)
-    plate_image = cv.resize(plate_image, (156, 61))
+    plate_image = cv.resize(plate_image, (150, 61))
     candidate_plates = pl.get_candidate_plates(plate_image)
     result = []
     for i in np.arange(len(candidate_plates)):
