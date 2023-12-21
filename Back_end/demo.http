@@ -1,0 +1,37 @@
+POST http://127.0.0.1:5000/cars
+Content-Type: application/json
+
+{
+    "city": "安庆市2",
+    "duration": "338 时 1 分 2 秒",
+    "in_time": "2022-08-08 08:08:34",
+    "license_plate": "皖H123457",
+    "out_time": "2022-08-22 10:07:23",
+    "province": "安徽省",
+    "vehicle_model": "蓝牌"
+}
+
+###
+
+###
+GET http://127.0.0.1:5000/cars
+Accept: application/json
+
+###
+
+PUT http://127.0.0.1:5000/cars/2
+Content-Type: application/json
+
+{
+    "city": "安庆市2",
+    "duration": "338 时 1 分 2 秒",
+    "in_time": "2022-08-08 08:08:34",
+    "license_plate": "皖H12345",
+    "out_time": "2022-08-22 10:07:23",
+    "province": "安徽省",
+    "vehicle_model": "蓝牌"
+}
+
+###
+DELETE http://127.0.0.1:5000/cars/4
+Accept: application/json
